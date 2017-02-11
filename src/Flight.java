@@ -1,5 +1,5 @@
 /**
- * Created by nutno on 12/2/2560.
+ * Created by Sarunyu Chankong on 12/2/2560.
  */
 public class Flight {
 
