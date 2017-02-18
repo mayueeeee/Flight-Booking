@@ -17,7 +17,14 @@ public class Flight {
     }
 
     public boolean canTaken(){
-        if(this.unbooking_seat!=0){
+        if(this.unbooking_seat>0){
+            return true;
+        }
+        else
+            return false;
+    }
+    public boolean canTaken(int number){
+        if(this.unbooking_seat-number>0){
             return true;
         }
         else

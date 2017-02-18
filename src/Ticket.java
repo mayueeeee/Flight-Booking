@@ -7,9 +7,9 @@ public class Ticket {
     private static int runningID;
     private int transactionID;
     private String[] name = new String[5];
-    private String departure_flight;
+    private int departure_flight;
     private int depart_day;
-    private String return_flight;
+    private int return_flight;
     private int return_day;
     private Boolean status;
 

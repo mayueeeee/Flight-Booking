@@ -59,21 +59,76 @@ public class Main {
                 }
             }
             else if(select==2){
-                String fdepart,freturn;
-                int dpt_day,rtn_day;
-                System.out.print("Enter depart Flight: ");
-                fdepart = input.nextLine();
-                showDay();
-                System.out.print("Enter depart day :");
-                dpt_day = input.nextInt();
-                //input.nextLine();
-                System.out.print("Enter return Flight: ");
-                freturn = input.nextLine();
-                System.out.print("Enter number of passengers: ");
-                //System.out.print(fdepart+" "+freturn);
+
+                int fdepart=0,freturn=0,dpt_day=0,rtn_day=0,passenger=0;
+                while (true){
+                    System.out.print("Enter depart Flight: ");
+                    fdepart = input.nextInt()-1;
+                    //System.out.println("fdpt = "+fdepart);
+                    if(fdepart>=0&fdepart<bkk_cnx.length)
+                    {
+                        break;
+                    }
+                    else{
+                        System.out.println("Input Error! Please try again.");
+                    }
+                }
+                while (true){
+                    System.out.print("Enter depart day: ");
+                    dpt_day = input.nextInt()-1;
+                    if(dpt_day>=0&dpt_day<bkk_cnx.length)
+                    {
+                        break;
+                    }
+                    else{
+                        System.out.println("Input Error! Please try again.");
+                    }
+                }
+                while (true){
+                    System.out.print("Enter return Flight: ");
+                    fdepart = input.nextInt()-1;
+                    if(fdepart>=0&fdepart<cnx_bkk.length)
+                    {
+                        break;
+                    }
+                    else{
+                        System.out.println("Input Error! Please try again.");
+                    }
+                }
+                while (true){
+                    System.out.print("Enter return day: ");
+                    dpt_day = input.nextInt()-1;
+                    if(dpt_day>=0&dpt_day<cnx_bkk.length)
+                    {
+                        break;
+                    }
+                    else{
+                        System.out.println("Input Error! Please try again.");
+                    }
+                }
+                while (true){
+                    System.out.print("Enter number of passengers: ");
+                    passenger = input.nextInt();
+                    if(passenger>0&passenger<=5)
+                    {
+                        break;
+                    }
+                    else{
+                        System.out.println("Passenger per flight Exceed! Please try again.");
+                    }
+                }
+
+                if(canReserve(dpt_day,fdepart,rtn_day,freturn,passenger)){
+
+                }
+
+
+
+
+
             }
             else if(select==3){
-                
+
 
 
             }
@@ -129,34 +184,10 @@ public class Main {
         }
 
     }
-    public static boolean canBooking(String fdepart,int dpt_day, String freturn,int rtn_day,int passenger){
-        boolean dpt=false,rtn=false;
-        //for depart flight
-        for (int i = 0; i < bkk_cnx.length; i++) {
-            for (int j = 0; j < bkk_cnx[i].length ; j++) {
-                if(fdepart.equals(bkk_cnx[dpt_day-1][j])&bkk_cnx[dpt_day-1][j].canTaken()){
-                    dpt = true;
-                }
-                else{
-                    dpt = false;
-                }
-
-            }
-
-        }
-        //for return flight
-        for (int i = 0; i < bkk_cnx.length; i++) {
-            for (int j = 0; j < bkk_cnx[i].length ; j++) {
-                if(fdepart.equals(cnx_bkk[rtn_day-1][j])&cnx_bkk[rtn_day-1][j].canTaken()){
-                    rtn = true;
-                }
-                else{
-                    rtn = false;
-                }
-
-            }
-
-        }
-        return (dpt&rtn);
+    public static boolean canReserve(int dpt_day,int dpt_flight,int rtn_day,int rtn_flight,int passenger){
+        if(bkk_cnx[dpt_day][dpt_flight].canTaken(passenger)&cnx_bkk[rtn_day][rtn_flight].canTaken(passenger))
+            return true;
+        else
+            return false;
     }
 }
