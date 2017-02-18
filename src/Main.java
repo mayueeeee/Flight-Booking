@@ -8,6 +8,7 @@ public class Main {
     public static ArrayList<Ticket> ticket_data = new ArrayList<Ticket>();
     public static void main(String[] args) {
 
+
         for (int i = 0; i < 7; i++) {
             /* Initialize BKK to CNX flight data */
             bkk_cnx[i][0] = new Flight("PG 215","08:05","09:20");
@@ -117,11 +118,21 @@ public class Main {
                         System.out.println("Passenger per flight Exceed! Please try again.");
                     }
                 }
+                //cnx_bkk[3][3].setUnbooking_seat(3);
 
                 if(canReserve(dpt_day,fdepart,rtn_day,freturn,passenger)){
-
+                    Ticket flight = new Ticket(dpt_day,fdepart,rtn_day,freturn,passenger);
+                    ticket_data.add(flight.getTransactionID(),flight);
+                    //System.out.println(ticket_data.get(0).getTransactionID());
+                    bkk_cnx[dpt_day][fdepart].setUnbooking_seat(passenger);
+                    cnx_bkk[rtn_day][freturn].setUnbooking_seat(passenger);
+                    System.out.println("You Ticket ID : "+flight.getTransactionID());
+                    System.out.println("bkk cnx ubs: "+bkk_cnx[dpt_day][fdepart].getUnbooking_seat());
+                    System.out.println("cnx bkk ubs: "+cnx_bkk[rtn_day][freturn].getUnbooking_seat());
                 }
-
+                else{
+                    System.out.println("Nooooo");
+                }
 
 
 
@@ -190,4 +201,7 @@ public class Main {
         else
             return false;
     }
+    /*public static boolean makeReserve(int dpt_day,int dpt_flight,int rtn_day,int rtn_flight,int passenger){
+
+    }*/
 }

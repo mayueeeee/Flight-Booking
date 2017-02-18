@@ -24,7 +24,7 @@ public class Flight {
             return false;
     }
     public boolean canTaken(int number){
-        if(this.unbooking_seat-number>0){
+        if(this.unbooking_seat-number>=0){
             return true;
         }
         else
@@ -47,6 +47,6 @@ public class Flight {
     }
 
     public void setUnbooking_seat(int unbooking_seat) {
-        this.unbooking_seat = unbooking_seat;
+        this.unbooking_seat -= unbooking_seat;
     }
 }
