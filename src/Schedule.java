@@ -3,6 +3,7 @@
  */
 public class Schedule {
     private Flight[][] flights;
+
     public Schedule(){
 
     }

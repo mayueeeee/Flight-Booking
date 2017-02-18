@@ -16,11 +16,13 @@ public class Flight {
         this.unbooking_seat = 5;
     }
 
-    public void reserveSeat(int seat){
-        this.unbooking_seat = this.unbooking_seat-seat;
+    public boolean canTaken(){
+        if(this.unbooking_seat>0){
+            return true;
+        }
+        else
+            return false;
     }
 
-    public void unreserveSeat(int seat){
-        this.unbooking_seat = this.unbooking_seat+seat;
-    }
+
 }
