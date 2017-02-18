@@ -17,12 +17,29 @@ public class Flight {
     }
 
     public boolean canTaken(){
-        if(this.unbooking_seat>0){
+        if(this.unbooking_seat!=0){
             return true;
         }
         else
             return false;
     }
+    public int getUnbooking_seat(){
+        return this.unbooking_seat;
+    }
 
+    public String getFlight_name() {
+        return flight_name;
+    }
 
+    public String getDeparture_time() {
+        return departure_time;
+    }
+
+    public String getArrival_time() {
+        return arrival_time;
+    }
+
+    public void setUnbooking_seat(int unbooking_seat) {
+        this.unbooking_seat = unbooking_seat;
+    }
 }
