@@ -25,6 +25,8 @@ public class Flight {
     }
     public boolean canTaken(int number){
         if(this.unbooking_seat-number>=0){
+            //System.out.println(">>>this.unbooking_seat "+this.unbooking_seat);
+            //System.out.println(">>>this.unbooking_seat-"+number+ " : "+(this.unbooking_seat-number));
             return true;
         }
         else

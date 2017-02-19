@@ -14,7 +14,7 @@ public class Ticket {
     private int passenger;
     private Boolean status;
 
-    public Ticket(int departure_day,int departure_flight,int return_day,int return_flight,int passenger) {
+    public Ticket(int departure_day,int departure_flight,int return_day,int return_flight,int passenger,String[]name) {
         this.transactionID = this.runningID++;
         this.departure_day = departure_day;
         this.departure_flight = departure_flight;
@@ -22,6 +22,10 @@ public class Ticket {
         this.return_flight = return_flight;
         this.passenger = passenger;
         this.status = true;
+    }
+
+    public String[] getName() {
+        return name;
     }
 
     public int getTransactionID() {
