@@ -183,16 +183,62 @@ public class Main {
 
             }
             else if(select==3){
+                boolean break_status=false;
+                while(true){
+                    if(break_status){
+                        break;
+                    }
+                    if(ticket_data.size()==0){
+                        System.out.printf("Error! No data in database\n\n");
+                        break;
+                    }
+                    else {
+                        System.out.print("Please Enter ticket ID: ");
+                        ticket_id = input.nextInt();
+                        if(ticket_id>=0&ticket_id<ticket_data.size()){
+                            if(!ticket_data.get(ticket_id).getStatus()){
+                                System.out.printf("Sorry! This ticket has been already canceled from system\n\n");
+                                break;
+                            }
+                            else{
+                                showTicketData(ticket_id);
+                                while (true){
+                                    System.out.println("Pick a task");
+                                    System.out.println("1. Edit departure day\n2. Edit departure flight");
+                                    System.out.println("3. Edit return day\n4. Edit return flight\n5. Exit");
+                                    System.out.print("Enter a choice: ");
+                                    int choice = input.nextInt();
+                                    if(choice == 1){
 
-                /*System.out.println("Please Enter ticket ID:");
-                ticket_id = input.nextInt();*/
+                                    }
+                                    else if(choice == 2){
 
-                showDepartFlight(6);
+                                    }
+                                    else if(choice == 3){
+
+                                    }
+                                    else if(choice == 4){
+
+                                    }
+                                    else if(choice == 5){
+                                        System.out.println();
+                                        break_status=true;
+                                        break;
+
+                                    }
+                                    else{
+                                        System.out.println("Please enter correct choice");
+                                    }
+                                }
 
 
-
-
-
+                            }
+                        }
+                        else{
+                            System.out.println("Input Error! Please try again.");
+                        }
+                    }
+                }
             }
             else if(select==4){
                 //System.out.println(ticket_data.size());
@@ -206,7 +252,7 @@ public class Main {
                         ticket_id = input.nextInt();
                         if(ticket_id>=0&ticket_id<ticket_data.size()){
                             if(!ticket_data.get(ticket_id).getStatus()){
-                                System.out.printf("Sorry! This ticket has been already removed from system\n\n");
+                                System.out.printf("Sorry! This ticket has been already canceled from system\n\n");
                                 break;
                             }
                             else{
@@ -304,6 +350,7 @@ public class Main {
         }
         System.out.println();
     }
+
     public static void showFlightTable(int destination){
         if(destination==2){
             for (int i = 0; i < 78; i++) {
@@ -350,6 +397,7 @@ public class Main {
             System.out.println();
         }
     }
+
     public static void showFlightList(int destination,int day){
         //Destination 1=BKK 2=CNX
         if(destination==1){
@@ -369,10 +417,9 @@ public class Main {
                     System.out.println("Available : "+bkk_cnx[day][j].getUnbooking_seat());
                 }
             }
-
         }
-
     }
+
     public static void showDepartFlight(int day){
         //Generate flight status Array
         Boolean[] no_flight = new Boolean[7];
@@ -521,6 +568,27 @@ public class Main {
         bkk_cnx[departure_day][departure_flight].cancelTicket(passenger);
         cnx_bkk[return_day][return_flight].cancelTicket(passenger);
         System.out.println("Your ticket has been deleted.");
+    }
+
+    public static void showTicketData(int ticket_id){
+        int departure_day = ticket_data.get(ticket_id).getDeparture_day();
+        int departure_flight = ticket_data.get(ticket_id).getDeparture_flight();
+        int return_day = ticket_data.get(ticket_id).getReturn_day();
+        int return_flight = ticket_data.get(ticket_id).getReturn_flight();
+
+        System.out.print("Passenger name: ");
+        for (int i = 0; i < ticket_data.get(ticket_id).getName().length; i++) {
+            System.out.print(ticket_data.get(ticket_id).getName()[i]);
+            if(i==ticket_data.get(ticket_id).getName().length-1){
+                System.out.println();
+            }
+            else
+                System.out.print(", ");
+        }
+        System.out.println("Departure day: "+getDayAsString(departure_day));
+        System.out.println("Departure flight: "+bkk_cnx[departure_day][departure_flight].getFlight_name());
+        System.out.println("Return day: "+getDayAsString(return_day));
+        System.out.println("Return flight: "+cnx_bkk[return_day][return_flight].getFlight_name());
     }
 
 }
