@@ -39,6 +39,11 @@ public class Main {
         for (int i = 0; i < 7; i++) {
             bkk_cnx[2][i].setUnbooking_seat(5);
         }
+        /*for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7; j++) {
+                bkk_cnx[i][j].setUnbooking_seat(5);
+            }
+        }*/
 
         int destination;
         while (true)
@@ -76,8 +81,7 @@ public class Main {
                 while (true){
                     System.out.print("Enter depart day: ");
                     dpt_day = input.nextInt()-1;
-                    if(dpt_day>=0&dpt_day<bkk_cnx.length)
-                    {
+                    if(dpt_day>=0&dpt_day<bkk_cnx.length){
                         break;
                     }
                     else{
@@ -88,8 +92,7 @@ public class Main {
                     System.out.print("Enter depart Flight: ");
                     fdepart = input.nextInt()-1;
                     //System.out.println("fdpt = "+fdepart);
-                    if(fdepart>=0&fdepart<bkk_cnx.length)
-                    {
+                    if(fdepart>=0&fdepart<bkk_cnx.length){
                         break;
                     }
                     else{
@@ -99,8 +102,7 @@ public class Main {
                 while (true){
                     System.out.print("Enter return day: ");
                     rtn_day = input.nextInt()-1;
-                    if(dpt_day>=0&dpt_day<cnx_bkk.length)
-                    {
+                    if(rtn_day>=0&rtn_day<cnx_bkk.length){
                         break;
                     }
                     else{
@@ -111,8 +113,7 @@ public class Main {
                     System.out.print("Enter return Flight: ");
                     freturn = input.nextInt()-1;
                     //System.out.println("fdepart = "+fdepart);
-                    if(fdepart>=0&fdepart<cnx_bkk.length)
-                    {
+                    if(freturn>=0&freturn<cnx_bkk.length){
                         break;
                     }
                     else{
@@ -123,8 +124,7 @@ public class Main {
                 while (true){
                     System.out.print("Enter number of passengers: ");
                     passenger = input.nextInt();
-                    if(passenger>0&passenger<=5)
-                    {
+                    if(passenger>0&passenger<=5){
                         break;
                     }
                     else{
@@ -159,14 +159,17 @@ public class Main {
                         System.out.print("Reason : ");
                         if(!(bkk_cnx[dpt_day][fdepart].canTaken(passenger)&!cnx_bkk[rtn_day][freturn].canTaken(passenger))){
                             System.out.println("Depart & Return flight isn't enough");
+                            showDepartFlight(dpt_day);
+                            showReturnFlight(rtn_day);
                         }
                         else if(!bkk_cnx[dpt_day][fdepart].canTaken(passenger)){
                             System.out.println("Depart flight isn't enough");
+                            showDepartFlight(dpt_day);
                         }
                         else if(!cnx_bkk[rtn_day][freturn].canTaken(passenger)){
                             System.out.println("Return flight isn't enough");
+                            showReturnFlight(rtn_day);
                         }
-
                         break;
                     }
                 }
@@ -182,7 +185,7 @@ public class Main {
                 /*System.out.println("Please Enter ticket ID:");
                 ticket_id = input.nextInt();*/
 
-                showDepartFlight(1);
+                showDepartFlight(6);
 
 
 
@@ -203,7 +206,6 @@ public class Main {
                 System.out.printf("Error! Please enter correct choice\n\n");
             }
         }
-
     }
 
     public static String getDayAsString(int x){
@@ -217,7 +219,6 @@ public class Main {
             case 6 : return "Saturday";
             default : return "Error!";
         }
-
     }
     public static void showDay(){
         System.out.println("1.Sunday");
@@ -353,11 +354,25 @@ public class Main {
                 }
             }
         }
-        for (Boolean status:no_flight) {
-            System.out.println(status);
+        int count=0;
+        //Check available flight
+        for (int i = 0; i < 7; i++) {
+            if(no_flight[day]==false){
+                System.out.println("You can booking Depart flight on "+getDayAsString(day));
+                break;
+            }
+            else if(i==6){
+                System.out.println("No flight can booking at this moment");
+                break;
+            }
+            else if(day==6){
+                day=0;
+            }
+            else{
+                day++;
+            }
         }
-        while (true){
-            //int i=day;
+       /* while (true){
             if(no_flight[day]==false){
                 System.out.println("Show flight on "+getDayAsString(day));
                 break;
@@ -366,18 +381,72 @@ public class Main {
                 if(day==6){
                     day=0;
                 }
+                else if(count==6){
+                    System.out.println("No flight can reserve at this moment");
+                    break;
+                }
                 else{
                     day++;
+                    count++;
+                    //System.out.println(count);
+                }
+            }
+        }*/
+
+    }
+
+    public static void showReturnFlight(int day){
+        //Generate flight status Array
+        Boolean[] no_flight = new Boolean[7];
+        for (int i = 0; i < cnx_bkk.length ; i++) {
+            for (int j = 0; j < cnx_bkk[i].length; j++) {
+                if(cnx_bkk[i][j].canTaken()){
+                    no_flight[i]=false;
+                    break;
+                }
+                else {
+                    no_flight[i] = true;
                 }
             }
         }
-
-        for (int i = 0; i < no_flight.length; i++) {
-            
+        int count=0;
+        //Check available flight
+        for (int i = 0; i < 7; i++) {
+            if(no_flight[day]==false){
+                System.out.println("You can booking return flight on "+getDayAsString(day));
+                break;
+            }
+            else if(i==6){
+                System.out.println("No flight can booking at this moment");
+                break;
+            }
+            else if(day==6){
+                day=0;
+            }
+            else{
+                day++;
+            }
         }
-        
-        
-        
+       /* while (true){
+            if(no_flight[day]==false){
+                System.out.println("Show flight on "+getDayAsString(day));
+                break;
+            }
+            else{
+                if(day==6){
+                    day=0;
+                }
+                else if(count==6){
+                    System.out.println("No flight can reserve at this moment");
+                    break;
+                }
+                else{
+                    day++;
+                    count++;
+                    //System.out.println(count);
+                }
+            }
+        }*/
 
     }
 
@@ -405,7 +474,5 @@ public class Main {
         }
 
     }
-    /*public static boolean makeReserve(int dpt_day,int dpt_flight,int rtn_day,int rtn_flight,int passenger){
 
-    }*/
 }
