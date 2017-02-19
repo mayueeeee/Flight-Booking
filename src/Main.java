@@ -3,11 +3,10 @@ import java.util.Scanner;
 
 public class Main {
     /* Initialize Arrays of Flight */
-    public static Flight[][] bkk_cnx = new Flight[7][7];
-    public static Flight[][] cnx_bkk = new Flight[7][7];
-    public static ArrayList<Ticket> ticket_data = new ArrayList<Ticket>();
+    private static Flight[][] bkk_cnx = new Flight[7][7];
+    private static Flight[][] cnx_bkk = new Flight[7][7];
+    private static ArrayList<Ticket> ticket_data = new ArrayList<Ticket>();
     public static void main(String[] args) {
-
         for (int i = 0; i < 7; i++) {
             /* Initialize BKK to CNX flight data */
             bkk_cnx[i][0] = new Flight("PG 215","08:05","09:20");
@@ -131,6 +130,8 @@ public class Main {
                         System.out.println("Passenger per flight Exceed! Please try again.");
                     }
                 }
+                //System.out.println("bkk_cnx = "+bkk_cnx[dpt_day][fdepart].canTaken(passenger));
+                //System.out.println("CNX_BKK  = "+cnx_bkk[rtn_day][freturn].canTaken(passenger));
 
                 //System.out.println(">>>cnx_bkk[3][3].getUnbooking_seat: "+cnx_bkk[3][3].getUnbooking_seat());
                 while (true){
@@ -158,16 +159,16 @@ public class Main {
                     else{
                         System.out.println("Sorry. We can't booking this flight for you");
                         System.out.print("Reason : ");
-                        if(!(bkk_cnx[dpt_day][fdepart].canTaken(passenger)&!cnx_bkk[rtn_day][freturn].canTaken(passenger))){
+                        if(!bkk_cnx[dpt_day][fdepart].canTaken(passenger) & !cnx_bkk[rtn_day][freturn].canTaken(passenger)){
                             System.out.println("Depart & Return flight isn't enough");
                             showDepartFlight(dpt_day);
                             showReturnFlight(rtn_day);
                         }
-                        else if(!bkk_cnx[dpt_day][fdepart].canTaken(passenger)){
+                        else if(!bkk_cnx[dpt_day][fdepart].canTaken(passenger) & cnx_bkk[rtn_day][freturn].canTaken(passenger)){
                             System.out.println("Depart flight isn't enough");
                             showDepartFlight(dpt_day);
                         }
-                        else if(!cnx_bkk[rtn_day][freturn].canTaken(passenger)){
+                        else if(bkk_cnx[dpt_day][fdepart].canTaken(passenger) & !cnx_bkk[rtn_day][freturn].canTaken(passenger)){
                             System.out.println("Return flight isn't enough");
                             showReturnFlight(rtn_day);
                         }
@@ -197,45 +198,46 @@ public class Main {
                 //System.out.println(ticket_data.size());
                 while(true){
                     if(ticket_data.size()==0){
-                        System.out.println("No data in database!");
-                        System.out.println();
+                        System.out.printf("Error! No data in database\n\n");
                         break;
                     }
                     else {
                         System.out.print("Please Enter ticket ID: ");
                         ticket_id = input.nextInt();
-                        if(!ticket_data.get(ticket_id).getStatus()){
-                            System.out.println("Sorry! This ticket has been already removed from system");
-                            break;
-                        }
-                        else if(ticket_id>=0&ticket_id<ticket_data.size()){
-                            System.out.print("Passenger name : ");
-                            for (String name:ticket_data.get(ticket_id).getName()) {
-                                System.out.print(name+", ");
-                            }
-                            System.out.print("Are you sure to cancel this ticket? [1:Delete,0:Cancel]:");
-                            int choice = input.nextInt();
-                            if(choice==1){
-                                deleteTicket(ticket_id);
+                        if(ticket_id>=0&ticket_id<ticket_data.size()){
+                            if(!ticket_data.get(ticket_id).getStatus()){
+                                System.out.printf("Sorry! This ticket has been already removed from system\n\n");
                                 break;
                             }
                             else{
-                                break;
+                                //System.out.println(ticket_data.get(ticket_id).getName().length);
+                                System.out.print("Passenger name : ");
+                                for (int i = 0; i < ticket_data.get(ticket_id).getName().length; i++) {
+                                    System.out.print(ticket_data.get(ticket_id).getName()[i]);
+                                    if(i==ticket_data.get(ticket_id).getName().length-1){
+                                        System.out.println();
+                                    }
+                                    else
+                                        System.out.print(", ");
+                                }
+                                System.out.print("Are you sure to cancel this ticket? [1:Delete,0:Cancel]: ");
+                                int choice = input.nextInt();
+                                if(choice==1){
+                                    deleteTicket(ticket_id);
+                                    System.out.println();
+                                    break;
+                                }
+                                else{
+                                    System.out.println();
+                                    break;
+                                }
                             }
                         }
                         else{
                             System.out.println("Input Error! Please try again.");
                         }
                     }
-
-
-
                 }
-
-
-
-                //ticket_data.get(ticket_id).
-
             }
             else if(select==5){
                 System.out.println("Goodbye :)");
@@ -347,7 +349,6 @@ public class Main {
             }
             System.out.println();
         }
-
     }
     public static void showFlightList(int destination,int day){
         //Destination 1=BKK 2=CNX
@@ -518,7 +519,7 @@ public class Main {
         int return_day = ticket_data.get(ticket_id).getReturn_day();
         int return_flight = ticket_data.get(ticket_id).getReturn_flight();
         bkk_cnx[departure_day][departure_flight].cancelTicket(passenger);
-        bkk_cnx[return_day][return_flight].cancelTicket(passenger);
+        cnx_bkk[return_day][return_flight].cancelTicket(passenger);
         System.out.println("Your ticket has been deleted.");
     }
 
