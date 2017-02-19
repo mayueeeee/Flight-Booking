@@ -26,7 +26,6 @@ public class Main {
             cnx_bkk[i][5] = new Flight("PG 220","19:00","20:20");
             cnx_bkk[i][6] = new Flight("PG 228","21:05","22:25");
         }
-
         Scanner input = new Scanner(System.in);
         int select,ticket_id;
         /*Mockup data. Comment this for production*/
@@ -44,6 +43,7 @@ public class Main {
                 bkk_cnx[i][j].setUnbooking_seat(5);
             }
         }*/
+        /* End mockup data */
 
         int destination;
         while (true)
@@ -137,6 +137,7 @@ public class Main {
                     if(canReserve(dpt_day,fdepart,rtn_day,freturn,passenger)){
                         input.nextLine();
                         String[] name = new String[passenger];
+                        //ArrayList<String>
                         System.out.println("Please enter passenger name ");
                         for (int i = 0; i < name.length ; i++) {
                             System.out.print("Passenger "+(i+1)+": ");
@@ -193,8 +194,46 @@ public class Main {
 
             }
             else if(select==4){
-                System.out.print("Please Enter ticket ID:");
-                ticket_id = input.nextInt();
+                //System.out.println(ticket_data.size());
+                while(true){
+                    if(ticket_data.size()==0){
+                        System.out.println("No data in database!");
+                        System.out.println();
+                        break;
+                    }
+                    else {
+                        System.out.print("Please Enter ticket ID: ");
+                        ticket_id = input.nextInt();
+                        if(!ticket_data.get(ticket_id).getStatus()){
+                            System.out.println("Sorry! This ticket has been already removed from system");
+                            break;
+                        }
+                        else if(ticket_id>=0&ticket_id<ticket_data.size()){
+                            System.out.print("Passenger name : ");
+                            for (String name:ticket_data.get(ticket_id).getName()) {
+                                System.out.print(name+", ");
+                            }
+                            System.out.print("Are you sure to cancel this ticket? [1:Delete,0:Cancel]:");
+                            int choice = input.nextInt();
+                            if(choice==1){
+                                deleteTicket(ticket_id);
+                                break;
+                            }
+                            else{
+                                break;
+                            }
+                        }
+                        else{
+                            System.out.println("Input Error! Please try again.");
+                        }
+                    }
+
+
+
+                }
+
+
+
                 //ticket_data.get(ticket_id).
 
             }
@@ -310,6 +349,29 @@ public class Main {
         }
 
     }
+    public static void showFlightList(int destination,int day){
+        //Destination 1=BKK 2=CNX
+        if(destination==1){
+            for (int j = 0; j < cnx_bkk[day].length ; j++) {
+                if(cnx_bkk[day][j].canTaken()){
+                    System.out.print((j+1)+". Flight: "+cnx_bkk[day][j].getFlight_name()+"  ");
+                    System.out.print("Time: "+cnx_bkk[day][j].getDeparture_time()+" - "+cnx_bkk[day][j].getArrival_time()+"  ");
+                    System.out.println("Available : "+cnx_bkk[day][j].getUnbooking_seat());
+                }
+            }
+        }
+        else if(destination==2){
+            for (int j = 0; j < bkk_cnx[day].length ; j++) {
+                if(bkk_cnx[day][j].canTaken()){
+                    System.out.print((j+1)+". Flight: "+bkk_cnx[day][j].getFlight_name()+"  ");
+                    System.out.print("Time: "+bkk_cnx[day][j].getDeparture_time()+" - "+bkk_cnx[day][j].getArrival_time()+"  ");
+                    System.out.println("Available : "+bkk_cnx[day][j].getUnbooking_seat());
+                }
+            }
+
+        }
+
+    }
     public static void showDepartFlight(int day){
         //Generate flight status Array
         Boolean[] no_flight = new Boolean[7];
@@ -329,6 +391,7 @@ public class Main {
         for (int i = 0; i < 7; i++) {
             if(no_flight[day]==false){
                 System.out.println("You can booking Depart flight on "+getDayAsString(day));
+                showFlightList(2,day);
                 break;
             }
             else if(i==6){
@@ -342,6 +405,7 @@ public class Main {
                 day++;
             }
         }
+        System.out.println();
        /* while (true){
             if(no_flight[day]==false){
                 System.out.println("Show flight on "+getDayAsString(day));
@@ -384,6 +448,7 @@ public class Main {
         for (int i = 0; i < 7; i++) {
             if(no_flight[day]==false){
                 System.out.println("You can booking return flight on "+getDayAsString(day));
+                showFlightList(1,day);
                 break;
             }
             else if(i==6){
@@ -397,6 +462,7 @@ public class Main {
                 day++;
             }
         }
+        System.out.println();
        /* while (true){
             if(no_flight[day]==false){
                 System.out.println("Show flight on "+getDayAsString(day));
@@ -443,6 +509,17 @@ public class Main {
             return " "+blankspace+text+blankspace;
         }
 
+    }
+    public static void deleteTicket(int ticket_id){
+        ticket_data.get(ticket_id).setStatus(false);
+        int passenger = ticket_data.get(ticket_id).getPassenger();
+        int departure_day = ticket_data.get(ticket_id).getDeparture_day();
+        int departure_flight = ticket_data.get(ticket_id).getDeparture_flight();
+        int return_day = ticket_data.get(ticket_id).getReturn_day();
+        int return_flight = ticket_data.get(ticket_id).getReturn_flight();
+        bkk_cnx[departure_day][departure_flight].cancelTicket(passenger);
+        bkk_cnx[return_day][return_flight].cancelTicket(passenger);
+        System.out.println("Your ticket has been deleted.");
     }
 
 }

@@ -51,4 +51,8 @@ public class Flight {
     public void setUnbooking_seat(int unbooking_seat) {
         this.unbooking_seat -= unbooking_seat;
     }
+
+    public void cancelTicket(int passenger){
+        this.unbooking_seat += passenger;
+    }
 }
