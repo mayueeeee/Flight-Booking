@@ -220,37 +220,7 @@ public class Main {
             default : return "Error!";
         }
     }
-    public static void showDay(){
-        System.out.println("1.Sunday");
-        System.out.println("2.Monday");
-        System.out.println("3.Tuesday");
-        System.out.println("4.Wednesday");
-        System.out.println("5.Thursday");
-        System.out.println("6.Friday");
-        System.out.println("7.Saturday");
-    }
-    public static void showFlightData(Flight[][] flight_arr){
 
-        for (int i = 0; i < flight_arr.length; i++) {
-            boolean noflight = true;
-            System.out.println("Flight on "+getDayAsString(i));
-            for (int j = 0; j < flight_arr[i].length ; j++) {
-                if(flight_arr[i][j].canTaken()){
-                    System.out.print("Flight: "+flight_arr[i][j].getFlight_name()+"  ");
-                    System.out.print("Time: "+flight_arr[i][j].getDeparture_time()+" - "+flight_arr[i][j].getArrival_time()+"  ");
-                    System.out.println("Available : "+flight_arr[i][j].getUnbooking_seat());
-                    noflight=false;
-
-                }
-
-            }
-            if(noflight==true){
-                System.out.println("No flight available");
-            }
-            System.out.println("");
-        }
-
-    }
     public static void showFlightTable(){
         for (int i = 0; i < 78; i++) {
             System.out.print(" ");
