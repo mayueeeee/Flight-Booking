@@ -627,8 +627,8 @@ public class Main {
                 if(cnx_bkk[rtn_day][rtn_flight].canTaken()){
                     cnx_bkk[return_day][return_flight].cancelTicket(passenger);
                     cnx_bkk[rtn_day][rtn_flight].setUnbooking_seat(passenger);
-                    ticket_data.get(ticket_id).setDeparture_day(rtn_day);
-                    ticket_data.get(ticket_id).setDeparture_flight(rtn_flight);
+                    ticket_data.get(ticket_id).setReturn_day(rtn_day);
+                    ticket_data.get(ticket_id).setReturn_flight(rtn_flight);
                     System.out.println("SYSTEM> Update ticket successful!");
                     break;
                 }
