@@ -1,3 +1,7 @@
+/**
+ * Author : Sarunyu Chankong.
+ * Project git URL : https://github.com/nutnokia/book_a_flight
+ */
 import java.util.ArrayList;
 import java.util.Scanner;
 
