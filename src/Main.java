@@ -63,7 +63,6 @@ public class Main {
                 while(true){
                     System.out.print("Please enter destination [1.Bangkok(BKK) 2.Chiang Mai(CNX)]: ");
                     destination = input.nextInt();
-                    //System.out.println(destination);
                     bkk_cnx[0][0].setUnbooking_seat(0);
                     if(destination==1||destination==2){
                         showFlightTable(destination);
@@ -91,7 +90,6 @@ public class Main {
                 while (true){
                     System.out.print("Enter depart Flight [1-7]: ");
                     fdepart = input.nextInt()-1;
-                    //System.out.println("fdpt = "+fdepart);
                     if(fdepart>=0&fdepart<bkk_cnx.length){
                         break;
                     }
@@ -112,7 +110,6 @@ public class Main {
                 while (true){
                     System.out.print("Enter return Flight [1-7]: ");
                     freturn = input.nextInt()-1;
-                    //System.out.println("fdepart = "+fdepart);
                     if(freturn>=0&freturn<cnx_bkk.length){
                         break;
                     }
@@ -131,10 +128,6 @@ public class Main {
                         System.out.println("Passenger per flight Exceed! Please try again.");
                     }
                 }
-                //System.out.println("bkk_cnx = "+bkk_cnx[dpt_day][fdepart].canTaken(passenger));
-                //System.out.println("CNX_BKK  = "+cnx_bkk[rtn_day][freturn].canTaken(passenger));
-
-                //System.out.println(">>>cnx_bkk[3][3].getUnbooking_seat: "+cnx_bkk[3][3].getUnbooking_seat());
                 while (true){
                     if(canReserve(dpt_day,fdepart,rtn_day,freturn,passenger)){
                         input.nextLine();
@@ -147,14 +140,9 @@ public class Main {
                         }
                         Ticket flight = new Ticket(dpt_day,fdepart,rtn_day,freturn,passenger,name);
                         ticket_data.add(flight.getTransactionID(),flight);
-                        //System.out.println(ticket_data.get(0).getTransactionID());
                         bkk_cnx[dpt_day][fdepart].setUnbooking_seat(passenger);
                         cnx_bkk[rtn_day][freturn].setUnbooking_seat(passenger);
-                        System.out.printf("SYSTEM> Booking Successful. Your ticket ID is %04d",flight.getTransactionID());
-                        System.out.println("");
-                        //System.out.println("You Ticket ID : "+flight.getTransactionID());
-                       // System.out.println("bkk cnx ubs: "+bkk_cnx[dpt_day][fdepart].getUnbooking_seat());
-                       // System.out.println("cnx bkk ubs: "+cnx_bkk[rtn_day][freturn].getUnbooking_seat());
+                        System.out.printf("SYSTEM> Booking Successful. Your ticket ID is %04d\n",flight.getTransactionID());
                         break;
                     }
                     else{
@@ -229,7 +217,6 @@ public class Main {
                 }
             }
             else if(select==4){
-                //System.out.println(ticket_data.size());
                 while(true){
                     if(ticket_data.size()==0){
                         System.out.printf("SYSTEM> Error! No data in database\n\n");
@@ -244,7 +231,6 @@ public class Main {
                                 break;
                             }
                             else{
-                                //System.out.println(ticket_data.get(ticket_id).getName().length);
                                 System.out.print("Passenger name : ");
                                 for (int i = 0; i < ticket_data.get(ticket_id).getName().length; i++) {
                                     System.out.print(ticket_data.get(ticket_id).getName()[i]);
@@ -303,7 +289,6 @@ public class Main {
         System.out.println("Flight form Bangkok To Chiang Mai");
         System.out.print("    ");
         for (int i = 0; i < bkk_cnx.length; i++) {
-            //System.out.print("         "+(i+1)+"."+getDayAsString(i).length()+"          ");
             System.out.print(alignCenter((i+1)+"."+getDayAsString(i)));
             System.out.print("     ");
         }
@@ -312,7 +297,6 @@ public class Main {
             System.out.print("["+(i+1)+"]");
             for (int j = 0; j < bkk_cnx[i].length; j++) {
                 System.out.print(" "+bkk_cnx[j][i].getFlight_name()+"|"+bkk_cnx[j][i].getDeparture_time()+" - "+bkk_cnx[j][i].getArrival_time()+"("+bkk_cnx[j][i].getUnbooking_seat()+")"+"   ");
-                //bkk_cnx[j][i].getFlight_name();
             }
             System.out.println();
         }
@@ -323,7 +307,6 @@ public class Main {
         System.out.println("Flight form Chiang Mai To Bangkok");
         System.out.print("    ");
         for (int i = 0; i < cnx_bkk.length; i++) {
-            //System.out.print("         "+(i+1)+"."+getDayAsString(i).length()+"          ");
             System.out.print(alignCenter((i+1)+"."+getDayAsString(i)));
             System.out.print("     ");
         }
@@ -332,7 +315,6 @@ public class Main {
             System.out.print("["+(i+1)+"]");
             for (int j = 0; j < cnx_bkk[i].length; j++) {
                 System.out.print(" "+cnx_bkk[j][i].getFlight_name()+"|"+cnx_bkk[j][i].getDeparture_time()+" - "+cnx_bkk[j][i].getArrival_time()+"("+cnx_bkk[j][i].getUnbooking_seat()+")"+"   ");
-                //bkk_cnx[j][i].getFlight_name();
             }
             System.out.println();
         }
@@ -347,7 +329,6 @@ public class Main {
             System.out.println("Flight form Bangkok To Chiang Mai");
             System.out.print("    ");
             for (int i = 0; i < bkk_cnx.length; i++) {
-                //System.out.print("         "+(i+1)+"."+getDayAsString(i).length()+"          ");
                 System.out.print(alignCenter((i+1)+"."+getDayAsString(i)));
                 System.out.print("     ");
             }
@@ -356,7 +337,6 @@ public class Main {
                 System.out.print("["+(i+1)+"]");
                 for (int j = 0; j < bkk_cnx[i].length; j++) {
                     System.out.print(" "+bkk_cnx[j][i].getFlight_name()+"|"+bkk_cnx[j][i].getDeparture_time()+" - "+bkk_cnx[j][i].getArrival_time()+"("+bkk_cnx[j][i].getUnbooking_seat()+")"+"   ");
-                    //bkk_cnx[j][i].getFlight_name();
                 }
                 System.out.println();
             }
@@ -369,7 +349,6 @@ public class Main {
             System.out.println("Flight form Chiang Mai To Bangkok");
             System.out.print("    ");
             for (int i = 0; i < cnx_bkk.length; i++) {
-                //System.out.print("         "+(i+1)+"."+getDayAsString(i).length()+"          ");
                 System.out.print(alignCenter((i+1)+"."+getDayAsString(i)));
                 System.out.print("     ");
             }
@@ -378,7 +357,6 @@ public class Main {
                 System.out.print("["+(i+1)+"]");
                 for (int j = 0; j < cnx_bkk[i].length; j++) {
                     System.out.print(" "+cnx_bkk[j][i].getFlight_name()+"|"+cnx_bkk[j][i].getDeparture_time()+" - "+cnx_bkk[j][i].getArrival_time()+"("+cnx_bkk[j][i].getUnbooking_seat()+")"+"   ");
-                    //bkk_cnx[j][i].getFlight_name();
                 }
                 System.out.println();
             }
@@ -442,27 +420,6 @@ public class Main {
             }
         }
         System.out.println();
-       /* while (true){
-            if(no_flight[day]==false){
-                System.out.println("Show flight on "+getDayAsString(day));
-                break;
-            }
-            else{
-                if(day==6){
-                    day=0;
-                }
-                else if(count==6){
-                    System.out.println("No flight can reserve at this moment");
-                    break;
-                }
-                else{
-                    day++;
-                    count++;
-                    //System.out.println(count);
-                }
-            }
-        }*/
-
     }
 
     public static void showReturnFlight(int day){
@@ -499,27 +456,6 @@ public class Main {
             }
         }
         System.out.println();
-       /* while (true){
-            if(no_flight[day]==false){
-                System.out.println("Show flight on "+getDayAsString(day));
-                break;
-            }
-            else{
-                if(day==6){
-                    day=0;
-                }
-                else if(count==6){
-                    System.out.println("No flight can reserve at this moment");
-                    break;
-                }
-                else{
-                    day++;
-                    count++;
-                    //System.out.println(count);
-                }
-            }
-        }*/
-
     }
 
     public static boolean canReserve(int dpt_day,int dpt_flight,int rtn_day,int rtn_flight,int passenger){
@@ -543,7 +479,6 @@ public class Main {
         else{
             return " "+blankspace+text+blankspace;
         }
-
     }
 
     public static void deleteTicket(int ticket_id){
@@ -564,7 +499,6 @@ public class Main {
         int return_day = ticket_data.get(ticket_id).getReturn_day();
         int return_flight = ticket_data.get(ticket_id).getReturn_flight();
         System.out.println("Your ticket information");
-
         System.out.print(" >Passenger name: ");
         for (int i = 0; i < ticket_data.get(ticket_id).getName().length; i++) {
             System.out.print(ticket_data.get(ticket_id).getName()[i]);
