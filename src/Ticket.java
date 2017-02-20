@@ -41,8 +41,25 @@ public class Ticket {
         return departure_flight;
     }
 
+    public void setDeparture_flight(int departure_flight) {
+        this.departure_flight = departure_flight;
+    }
+
+    public void setDeparture_day(int departure_day) {
+        this.departure_day = departure_day;
+    }
+
+    public void setReturn_flight(int return_flight) {
+        this.return_flight = return_flight;
+    }
+
+    public void setReturn_day(int return_day) {
+        this.return_day = return_day;
+    }
+
     public Boolean getStatus() {
         return status;
+
     }
 
     public int getDeparture_day() {

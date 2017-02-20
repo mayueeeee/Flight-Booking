@@ -150,7 +150,7 @@ public class Main {
                         //System.out.println(ticket_data.get(0).getTransactionID());
                         bkk_cnx[dpt_day][fdepart].setUnbooking_seat(passenger);
                         cnx_bkk[rtn_day][freturn].setUnbooking_seat(passenger);
-                        System.out.println("SYSTEM> Booking Successful. Your ticket ID is "+flight.getTransactionID());
+                        System.out.printf("SYSTEM> Booking Successful. Your ticket ID is %04d",flight.getTransactionID());
                         System.out.println("");
                         //System.out.println("You Ticket ID : "+flight.getTransactionID());
                        // System.out.println("bkk cnx ubs: "+bkk_cnx[dpt_day][fdepart].getUnbooking_seat());
@@ -176,12 +176,6 @@ public class Main {
                         break;
                     }
                 }
-
-
-
-
-
-
             }
             else if(select==3){
                 boolean break_status=false;
@@ -205,34 +199,27 @@ public class Main {
                                 showTicketData(ticket_id);
                                 while (true){
                                     System.out.println("Pick a task");
-                                    System.out.println("1. Edit departure day\n2. Edit departure flight");
-                                    System.out.println("3. Edit return day\n4. Edit return flight\n5. Exit");
+                                    System.out.println("1. Edit departure\n2. Edit return\n3. Exit");
+                                    //System.out.println("3. Edit return day\n4. Edit return flight\n5. Exit");
                                     System.out.print("Enter a choice: ");
                                     int choice = input.nextInt();
+                                    //Flush "\n" from nextInt
+                                    input.nextLine();
                                     if(choice == 1){
-                                        editDepartureDay(ticket_id);
+                                        editDeparture(ticket_id);
                                     }
                                     else if(choice == 2){
-
+                                        editReturn(ticket_id);
                                     }
                                     else if(choice == 3){
-
-                                    }
-                                    else if(choice == 4){
-
-                                    }
-                                    else if(choice == 5){
                                         System.out.println();
                                         break_status=true;
                                         break;
-
                                     }
                                     else{
                                         System.out.println("Please enter correct choice");
                                     }
                                 }
-
-
                             }
                         }
                         else{
@@ -593,22 +580,128 @@ public class Main {
         System.out.println(" >Return flight: "+cnx_bkk[return_day][return_flight].getFlight_name());
     }
 
-    public static void editDepartureDay(int ticket_id){
+    public static void editDeparture(int ticket_id){
         int departure_day = ticket_data.get(ticket_id).getDeparture_day();
         int departure_flight = ticket_data.get(ticket_id).getDeparture_flight();
-
+        int passenger = ticket_data.get(ticket_id).getPassenger();
+        String day,flight;
+        int dpt_day,dpt_flight;
         System.out.println("Current departure day: "+ getDayAsString(departure_day));
-        for (int i = 0; i < 7; i++) {
-            System.out.print((i+1)+". "+getDayAsString(i)+" ");
-        }
+        System.out.println("Current departure flight: "+ bkk_cnx[departure_day][departure_flight].getFlight_name());
         while (true){
-            System.out.print("\nNew departure day: ");
-            int dpt_day = input.nextInt()-1;
-            if(bkk_cnx[dpt_day][departure_flight].canTaken()){
-
+            while (true){
+                System.out.print("New departure day(or leave blank if you don't want to change): ");
+                day = input.nextLine();
+                if(!day.equals("")){
+                    dpt_day = Integer.parseInt(day)-1;
+                    if(dpt_day>=0&dpt_day<bkk_cnx.length){
+                        break;
+                    }
+                    else{
+                        System.out.println("Input Error! Please try again.");
+                    }
+                }
+                else{
+                    dpt_day=departure_day;
+                    break;
+                }
+            }
+            while (true){
+                System.out.print("New departure flight(or leave blank if you don't want to change): ");
+                flight = input.nextLine();
+                if(!flight.equals("")){
+                    dpt_flight = Integer.parseInt(flight)-1;
+                    if(dpt_flight>=0&dpt_flight<bkk_cnx[dpt_day].length){
+                        break;
+                    }
+                    else{
+                        System.out.println("Input Error! Please try again.");
+                    }
+                }
+                else{
+                    dpt_flight = departure_flight;
+                    break;
+                }
+            }
+            if(day.equals("")&&flight.equals("")){
+                System.out.println("SYSTEM> Nothing change");
+                break;
+            }
+            else{
+                if(bkk_cnx[dpt_day][dpt_flight].canTaken()){
+                    bkk_cnx[departure_day][departure_flight].cancelTicket(passenger);
+                    bkk_cnx[dpt_day][dpt_flight].setUnbooking_seat(passenger);
+                    ticket_data.get(ticket_id).setDeparture_day(dpt_day);
+                    ticket_data.get(ticket_id).setDeparture_flight(dpt_flight);
+                    System.out.println("SYSTEM> Update ticket successful!");
+                    break;
+                }
+                else
+                    System.out.println("SYSTEM> Your new flight can't booking. Please try again");
             }
         }
+    }
 
+    public static void editReturn(int ticket_id){
+        int return_day = ticket_data.get(ticket_id).getReturn_day();
+        int return_flight = ticket_data.get(ticket_id).getReturn_flight();
+        int passenger = ticket_data.get(ticket_id).getPassenger();
+        String day,flight;
+        int rtn_day,rtn_flight;
+        System.out.println("Current return day: "+ getDayAsString(return_day));
+        System.out.println("Current return flight: "+ cnx_bkk[return_day][return_flight].getFlight_name());
+        while (true){
+            while (true){
+                System.out.print("New return day(or leave blank if you don't want to change): ");
+                day = input.nextLine();
+                if(!day.equals("")){
+                    rtn_day = Integer.parseInt(day)-1;
+                    if(rtn_day>=0&rtn_day<cnx_bkk.length){
+                        break;
+                    }
+                    else{
+                        System.out.println("Input Error! Please try again.");
+                    }
+                }
+                else{
+                    rtn_day=return_day;
+                    break;
+                }
+            }
+            while (true){
+                System.out.print("New return flight(or leave blank if you don't want to change): ");
+                flight = input.nextLine();
+                if(!flight.equals("")){
+                    rtn_flight = Integer.parseInt(flight)-1;
+                    if(rtn_flight>=0&rtn_flight<cnx_bkk[rtn_day].length){
+                        break;
+                    }
+                    else{
+                        System.out.println("Input Error! Please try again.");
+                    }
+                }
+                else{
+                    rtn_flight = return_flight;
+                    break;
+                }
+            }
+            if(day.equals("")&&flight.equals("")){
+                System.out.println("SYSTEM> Nothing change");
+                break;
+            }
+            else{
+                if(cnx_bkk[rtn_day][rtn_flight].canTaken()){
+                    cnx_bkk[return_day][return_flight].cancelTicket(passenger);
+                    cnx_bkk[rtn_day][rtn_flight].setUnbooking_seat(passenger);
+                    ticket_data.get(ticket_id).setDeparture_day(rtn_day);
+                    ticket_data.get(ticket_id).setDeparture_flight(rtn_flight);
+                    System.out.println("SYSTEM> Update ticket successful!");
+                    break;
+                }
+                else
+                    System.out.println("SYSTEM> Your new flight can't booking. Please try again");
+            }
+        }
     }
 
 }

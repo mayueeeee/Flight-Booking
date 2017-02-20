@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65ca4ead-1825-4eb8-9628-80a0fb6eaa9d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/book_a_flight/Main.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ticket.java" afterPath="$PROJECT_DIR$/src/Ticket.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +25,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10">
-              <caret line="247" column="77" lean-forward="false" selection-start-line="247" selection-start-column="51" selection-end-line="247" selection-end-column="77" />
+            <state relative-caret-position="125">
+              <caret line="152" column="91" lean-forward="false" selection-start-line="152" selection-start-column="91" selection-end-line="152" selection-end-column="91" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#293#301#0" expanded="true" />
@@ -38,8 +38,10 @@
                 <element signature="method#showReturnFlight#0;class#Main#0" expanded="false" />
                 <element signature="method#canReserve#0;class#Main#0" expanded="false" />
                 <element signature="method#alignCenter#0;class#Main#0" expanded="false" />
+                <element signature="method#deleteTicket#0;class#Main#0" expanded="false" />
                 <element signature="method#showTicketData#0;class#Main#0" expanded="false" />
-                <element signature="method#editDepartureDay#0;class#Main#0" expanded="false" />
+                <element signature="method#editDeparture#0;class#Main#0" expanded="false" />
+                <element signature="method#editReturn#0;class#Main#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -48,8 +50,8 @@
       <file leaf-file-name="Ticket.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ticket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="823">
-              <caret line="43" column="32" lean-forward="false" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+            <state relative-caret-position="103">
+              <caret line="43" column="59" lean-forward="false" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
               <folding>
                 <element signature="e#852#853#0" expanded="true" />
                 <element signature="e#879#880#0" expanded="true" />
@@ -59,13 +61,19 @@
                 <element signature="e#1033#1034#0" expanded="true" />
                 <element signature="e#1073#1074#0" expanded="true" />
                 <element signature="e#1112#1113#0" expanded="true" />
-                <element signature="e#1175#1176#0" expanded="true" />
-                <element signature="e#1286#1287#0" expanded="true" />
-                <element signature="e#1322#1323#0" expanded="true" />
-                <element signature="e#1356#1357#0" expanded="true" />
+                <element signature="e#1229#1230#0" expanded="true" />
+                <element signature="e#1284#1285#0" expanded="true" />
+                <element signature="e#1334#1335#0" expanded="true" />
                 <element signature="e#1389#1390#0" expanded="true" />
-                <element signature="e#1422#1423#0" expanded="true" />
-                <element signature="e#1454#1455#0" expanded="true" />
+                <element signature="e#1439#1440#0" expanded="true" />
+                <element signature="e#1488#1489#0" expanded="true" />
+                <element signature="e#1532#1533#0" expanded="true" />
+                <element signature="e#1707#1708#0" expanded="true" />
+                <element signature="e#1743#1744#0" expanded="true" />
+                <element signature="e#1777#1778#0" expanded="true" />
+                <element signature="e#1810#1811#0" expanded="true" />
+                <element signature="e#1843#1844#0" expanded="true" />
+                <element signature="e#1875#1876#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,7 +82,7 @@
       <file leaf-file-name="Flight.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Flight.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
+            <state relative-caret-position="-315">
               <caret line="28" column="38" lean-forward="false" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
               <folding>
                 <element signature="e#988#989#0" expanded="true" />
@@ -420,7 +428,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1616" height="886" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -431,7 +439,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39948454" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39948454" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -486,8 +494,10 @@
             <element signature="method#showReturnFlight#0;class#Main#0" expanded="false" />
             <element signature="method#canReserve#0;class#Main#0" expanded="false" />
             <element signature="method#alignCenter#0;class#Main#0" expanded="false" />
+            <element signature="method#deleteTicket#0;class#Main#0" expanded="false" />
             <element signature="method#showTicketData#0;class#Main#0" expanded="false" />
-            <element signature="method#editDepartureDay#0;class#Main#0" expanded="false" />
+            <element signature="method#editDeparture#0;class#Main#0" expanded="false" />
+            <element signature="method#editReturn#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -536,8 +546,10 @@
             <element signature="method#showReturnFlight#0;class#Main#0" expanded="false" />
             <element signature="method#canReserve#0;class#Main#0" expanded="false" />
             <element signature="method#alignCenter#0;class#Main#0" expanded="false" />
+            <element signature="method#deleteTicket#0;class#Main#0" expanded="false" />
             <element signature="method#showTicketData#0;class#Main#0" expanded="false" />
-            <element signature="method#editDepartureDay#0;class#Main#0" expanded="false" />
+            <element signature="method#editDeparture#0;class#Main#0" expanded="false" />
+            <element signature="method#editReturn#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -586,8 +598,10 @@
             <element signature="method#showReturnFlight#0;class#Main#0" expanded="false" />
             <element signature="method#canReserve#0;class#Main#0" expanded="false" />
             <element signature="method#alignCenter#0;class#Main#0" expanded="false" />
+            <element signature="method#deleteTicket#0;class#Main#0" expanded="false" />
             <element signature="method#showTicketData#0;class#Main#0" expanded="false" />
-            <element signature="method#editDepartureDay#0;class#Main#0" expanded="false" />
+            <element signature="method#editDeparture#0;class#Main#0" expanded="false" />
+            <element signature="method#editReturn#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -636,8 +650,10 @@
             <element signature="method#showReturnFlight#0;class#Main#0" expanded="false" />
             <element signature="method#canReserve#0;class#Main#0" expanded="false" />
             <element signature="method#alignCenter#0;class#Main#0" expanded="false" />
+            <element signature="method#deleteTicket#0;class#Main#0" expanded="false" />
             <element signature="method#showTicketData#0;class#Main#0" expanded="false" />
-            <element signature="method#editDepartureDay#0;class#Main#0" expanded="false" />
+            <element signature="method#editDeparture#0;class#Main#0" expanded="false" />
+            <element signature="method#editReturn#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -658,33 +674,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ticket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="823">
-          <caret line="43" column="32" lean-forward="false" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-          <folding>
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#879#880#0" expanded="true" />
-            <element signature="e#916#917#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#997#998#0" expanded="true" />
-            <element signature="e#1033#1034#0" expanded="true" />
-            <element signature="e#1073#1074#0" expanded="true" />
-            <element signature="e#1112#1113#0" expanded="true" />
-            <element signature="e#1175#1176#0" expanded="true" />
-            <element signature="e#1286#1287#0" expanded="true" />
-            <element signature="e#1322#1323#0" expanded="true" />
-            <element signature="e#1356#1357#0" expanded="true" />
-            <element signature="e#1389#1390#0" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
-            <element signature="e#1454#1455#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Flight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
+        <state relative-caret-position="-315">
           <caret line="28" column="38" lean-forward="false" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
           <folding>
             <element signature="e#988#989#0" expanded="true" />
@@ -703,10 +695,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ticket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="43" column="59" lean-forward="false" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#879#880#0" expanded="true" />
+            <element signature="e#916#917#0" expanded="true" />
+            <element signature="e#952#953#0" expanded="true" />
+            <element signature="e#997#998#0" expanded="true" />
+            <element signature="e#1033#1034#0" expanded="true" />
+            <element signature="e#1073#1074#0" expanded="true" />
+            <element signature="e#1112#1113#0" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1334#1335#0" expanded="true" />
+            <element signature="e#1389#1390#0" expanded="true" />
+            <element signature="e#1439#1440#0" expanded="true" />
+            <element signature="e#1488#1489#0" expanded="true" />
+            <element signature="e#1532#1533#0" expanded="true" />
+            <element signature="e#1707#1708#0" expanded="true" />
+            <element signature="e#1743#1744#0" expanded="true" />
+            <element signature="e#1777#1778#0" expanded="true" />
+            <element signature="e#1810#1811#0" expanded="true" />
+            <element signature="e#1843#1844#0" expanded="true" />
+            <element signature="e#1875#1876#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="247" column="77" lean-forward="false" selection-start-line="247" selection-start-column="51" selection-end-line="247" selection-end-column="77" />
+        <state relative-caret-position="125">
+          <caret line="152" column="91" lean-forward="false" selection-start-line="152" selection-start-column="91" selection-end-line="152" selection-end-column="91" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#293#301#0" expanded="true" />
@@ -718,8 +740,10 @@
             <element signature="method#showReturnFlight#0;class#Main#0" expanded="false" />
             <element signature="method#canReserve#0;class#Main#0" expanded="false" />
             <element signature="method#alignCenter#0;class#Main#0" expanded="false" />
+            <element signature="method#deleteTicket#0;class#Main#0" expanded="false" />
             <element signature="method#showTicketData#0;class#Main#0" expanded="false" />
-            <element signature="method#editDepartureDay#0;class#Main#0" expanded="false" />
+            <element signature="method#editDeparture#0;class#Main#0" expanded="false" />
+            <element signature="method#editReturn#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
